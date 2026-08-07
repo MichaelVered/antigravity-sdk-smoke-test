@@ -1,4 +1,4 @@
-# Google Antigravity (AGY) SDK Verification & Multi-Agent Laboratory
+# Google Antigravity (AGY) SDK Smoke Test & Multi-Agent Laboratory
 
 A unified demonstration application built with the **Google Antigravity (AGY) SDK** (`google-antigravity`), showcasing native SDK verification audit, dynamic subagent minting, sandboxed in-memory Python code execution, and Orchestrator LLM feedback in a colored terminal interface.
 
@@ -33,43 +33,50 @@ The application executes in two distinct phases:
 ## 📁 File Structure
 
 ```text
-~/ADK/AGY_SDK/
+antigravity-sdk-smoke-test/
 ├── main.py              # Unified Phase 1 Audit & Phase 2 Multi-Agent Lab Application
 ├── requirements.txt      # Project dependencies (google-antigravity, python-dotenv)
-└── README.md            # Project documentation
+├── .gitignore           # Git ignore patterns
+└── README.md            # Project documentation & setup guide
 ```
 
-> **Note on Storage**: Subagent code execution runs **100% in-memory** (`python3 -c "<code>"`). No ephemeral script files are written to or left on disk.
+> **Note on Execution**: Subagent code execution runs **100% in-memory** (`python3 -c "<code>"`). No ephemeral script files are written to or left on disk.
 
 ---
 
-## ⚙️ Prerequisites & Environment Setup
+## 🚀 Quick Start Guide (For Cloning & Running)
 
-1. **Python Environment**: Ensure Python 3.10+ is active.
-2. **API Credentials**: Place your Gemini API key in `~/ADK/.env`:
-   ```env
-   GOOGLE_API_KEY="your-api-key-here"
-   ```
+### 1. Clone the Repository
+```bash
+git clone https://github.com/MichaelVered/antigravity-sdk-smoke-test.git
+cd antigravity-sdk-smoke-test
+```
 
-3. **Install Dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 2. Set Up Virtual Environment & Dependencies
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
----
+### 3. Provide Gemini API Credentials
+Export your Gemini API Key in your shell:
+```bash
+export GEMINI_API_KEY="your-gemini-api-key-here"
+```
+*(Alternatively, place a `.env` file containing `GOOGLE_API_KEY="your-key"` in the parent folder `../.env`)*
 
-## 🚀 Running the Application
-
-Execute the unified program using your active environment:
-
+### 4. Run the Application
 ```bash
 python3 main.py
 ```
 
-### What Happens When Executed:
+---
+
+## 🧪 What Happens When Executed
 
 1. **Phase 1 (SDK Verification Audit)**:
-   - Verifies that `google.antigravity` is imported natively from `site-packages`.
+   - Verifies that `google-antigravity` is imported natively from `site-packages`.
    - Confirms API key loading without fallback mocks.
    - Runs a live IPC test ping to the AGY backend.
    - Pauses for user confirmation before proceeding.
